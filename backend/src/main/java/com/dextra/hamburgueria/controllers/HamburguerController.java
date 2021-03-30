@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -27,10 +28,10 @@ public class HamburguerController {
     }
 
     @PostMapping
-    public ResponseEntity<IngredientDTO> create(@RequestBody HamburguerInsertDTO dto){
+    public ResponseEntity<HamburguerDTO> create(@Valid @RequestBody HamburguerInsertDTO dto){
         HamburguerDTO hamburguerDTO = hamburguerService.create(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(hamburguerDTO.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(hamburguerDTO);
     }
 
 }
