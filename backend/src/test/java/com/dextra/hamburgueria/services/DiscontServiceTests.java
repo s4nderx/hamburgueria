@@ -84,4 +84,23 @@ public class DiscontServiceTests {
 
     }
 
+    @Test
+    public void getDiscountShouldApplyNoDiscount() {
+
+        Hamburguer regularBurguer = new Hamburguer("X-Cheese");
+        regularBurguer.setId(6L);
+        Ingredient queijo = this.ingredientService.findById(5L);
+        HamburguerIngredient hi1 = new HamburguerIngredient(regularBurguer, queijo, 2, queijo.getPrice());
+        regularBurguer.getHamburguerIngredients().addAll(Collections.singletonList(hi1));
+        queijo.getItens().addAll(Collections.singletonList(hi1));
+
+        regularBurguer.calculatePrice();
+        regularBurguer.setDiscount(this.discountService.getDiscount(regularBurguer));
+        regularBurguer.setFinalPrice(regularBurguer.getPrice().subtract(regularBurguer.getDiscount()));
+
+        Assertions.assertEquals(BigDecimal.ZERO, regularBurguer.getDiscount());
+        Assertions.assertEquals(regularBurguer.getFinalPrice(), regularBurguer.getPrice());
+
+    }
+
 }

@@ -75,12 +75,13 @@ public class Hamburguer {
         return hamburguerIngredients;
     }
 
-    public void calculatePrice() {
+    public BigDecimal calculatePrice() {
         this.price = hamburguerIngredients.stream()
         .map(hamburguerIngredient -> hamburguerIngredient.getPrice()
                 .multiply(BigDecimal.valueOf(hamburguerIngredient.getQuantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         this.finalPrice = this.price;
+        return this.price;
     }
 
     @Override
