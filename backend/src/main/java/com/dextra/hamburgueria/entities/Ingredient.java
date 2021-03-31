@@ -25,7 +25,7 @@ public class Ingredient implements Serializable {
     private BigDecimal price;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "id.ingredient")
+    @OneToMany(mappedBy = "id.ingredient", fetch = FetchType.EAGER)
     private final List<HamburguerIngredient> itens = new ArrayList<>();
 
     public Ingredient() {

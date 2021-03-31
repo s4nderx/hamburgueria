@@ -36,11 +36,16 @@ public class TakeTreePayTwo extends Discount {
         List<HamburguerIngredient> hamburgerIngredient = hamburguer.getHamburguerIngredients()
                 .stream()
                 .filter(hamburguerIngredient -> hamburguerIngredient.getIngredient().getId().equals(this.ingredientId)).collect(Collectors.toList());
+
+        if (hamburgerIngredient.isEmpty()) return false;
+
         Integer quantity = hamburgerIngredient.get(0).getQuantity();
+
         if(quantity >= 3){
             this.quantity = quantity;
             return true;
         }
+
         return false;
     }
 
