@@ -9,24 +9,26 @@ import com.dextra.hamburgueria.entities.Ingredient;
 import com.dextra.hamburgueria.repository.HamburguerIngredientReposiroty;
 import com.dextra.hamburgueria.repository.HamburguerRepository;
 import com.dextra.hamburgueria.services.exception.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 @Service
 public class HamburguerServiceImpl implements HamburguerService {
 
-    @Autowired
-    private HamburguerRepository hamburguerRepository;
+    private final HamburguerRepository hamburguerRepository;
 
-    @Autowired
-    private IngredientService ingredientService;
+    private final IngredientService ingredientService;
 
-    @Autowired
-    private HamburguerIngredientReposiroty hamburguerIngredientReposiroty;
+    private final HamburguerIngredientReposiroty hamburguerIngredientReposiroty;
 
-    @Autowired
-    DiscountService discountService;
+    private final DiscountService discountService;
+
+    public HamburguerServiceImpl(HamburguerRepository hamburguerRepository, IngredientService ingredientService, HamburguerIngredientReposiroty hamburguerIngredientReposiroty, DiscountService discountService) {
+        this.hamburguerRepository = hamburguerRepository;
+        this.ingredientService = ingredientService;
+        this.hamburguerIngredientReposiroty = hamburguerIngredientReposiroty;
+        this.discountService = discountService;
+    }
 
 
     @Override

@@ -3,7 +3,6 @@ package com.dextra.hamburgueria.services;
 import com.dextra.hamburgueria.entities.Ingredient;
 import com.dextra.hamburgueria.repository.IngredientRepository;
 import com.dextra.hamburgueria.services.exception.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
