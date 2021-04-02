@@ -13,7 +13,7 @@ public class HamburguerDTO {
     private BigDecimal discount;
     private BigDecimal price;
     private BigDecimal finalPrice;
-    private List<IngredientCreatedDTO> ingredients = new ArrayList<>();
+    private List<IngredientResponseDTO> ingredients = new ArrayList<>();
 
     public HamburguerDTO(String name, BigDecimal discount, BigDecimal price, BigDecimal finalPrice) {
         this.name = name;
@@ -29,7 +29,7 @@ public class HamburguerDTO {
         this.price = entity.getPrice();
         this.finalPrice = entity.getFinalPrice();
         entity.getHamburguerIngredients()
-                .forEach(hamburguerIngredient -> this.ingredients.add(new IngredientCreatedDTO(hamburguerIngredient)));
+                .forEach(hamburguerIngredient -> this.ingredients.add(new IngredientResponseDTO(hamburguerIngredient)));
     }
 
     public Long getId() {
@@ -72,7 +72,7 @@ public class HamburguerDTO {
         this.finalPrice = finalPrice;
     }
 
-    public List<IngredientCreatedDTO> getIngredients() {
+    public List<IngredientResponseDTO> getIngredients() {
         return ingredients;
     }
 

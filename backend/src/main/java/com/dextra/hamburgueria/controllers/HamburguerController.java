@@ -2,14 +2,17 @@ package com.dextra.hamburgueria.controllers;
 
 import com.dextra.hamburgueria.dto.request.HamburguerInsertDTO;
 import com.dextra.hamburgueria.dto.response.HamburguerDTO;
-import com.dextra.hamburgueria.dto.response.IngredientDTO;
+import com.dextra.hamburgueria.entities.Hamburguer;
+import com.dextra.hamburgueria.entities.Ingredient;
 import com.dextra.hamburgueria.services.HamburguerService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/hamburguers")
@@ -26,6 +29,14 @@ public class HamburguerController {
         HamburguerDTO obj = new HamburguerDTO(this.hamburguerService.findById(id));
         return  ResponseEntity.ok().body(obj);
     }
+
+    @GetMapping()
+    public ResponseEntity<List<HamburguerDTO>> findAll(){
+        List<HamburguerDTO> ingredients = hamburguerService.findAll();
+        return  ResponseEntity.ok().body(ingredients);
+    }
+
+
 
     @PostMapping
     public ResponseEntity<HamburguerDTO> create(@Valid @RequestBody HamburguerInsertDTO dto){

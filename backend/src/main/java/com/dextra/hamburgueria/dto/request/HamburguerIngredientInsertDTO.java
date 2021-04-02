@@ -1,9 +1,14 @@
 package com.dextra.hamburgueria.dto.request;
 
+import javax.validation.constraints.NotNull;
+
 public class HamburguerIngredientInsertDTO {
 
-    Long id;
-    Integer quantity;
+    @NotNull
+    private Long id;
+
+    @NotNull
+    private Integer quantity;
 
     public HamburguerIngredientInsertDTO() {
     }

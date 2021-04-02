@@ -1,19 +1,19 @@
 package com.dextra.hamburgueria.dto.request;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 public class HamburguerInsertDTO {
 
     @NotEmpty(message = "campo nome obrigatório.")
-    String name;
+    private String name;
 
     @NotEmpty(message = "Um hamburguer precisa ter ingredientes.")
-    List<HamburguerIngredientInsertDTO> ingredients;
+    private List<@Valid HamburguerIngredientInsertDTO> ingredients;
 
-    public HamburguerInsertDTO(String name, List<HamburguerIngredientInsertDTO> ingredients) {
+    public HamburguerInsertDTO(String name) {
         this.name = name;
-        this.ingredients = ingredients;
     }
 
     public HamburguerInsertDTO() {
@@ -31,7 +31,9 @@ public class HamburguerInsertDTO {
         return ingredients;
     }
 
-    public void setIngredients(List<HamburguerIngredientInsertDTO> ingredients) {
-        this.ingredients = ingredients;
+    public void addIngredient(HamburguerIngredientInsertDTO ingredient){
+        this.ingredients.add(ingredient);
     }
+
+
 }

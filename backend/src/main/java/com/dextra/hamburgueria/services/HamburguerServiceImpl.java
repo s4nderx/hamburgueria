@@ -9,8 +9,12 @@ import com.dextra.hamburgueria.entities.Ingredient;
 import com.dextra.hamburgueria.repository.HamburguerIngredientReposiroty;
 import com.dextra.hamburgueria.repository.HamburguerRepository;
 import com.dextra.hamburgueria.services.exception.EntityNotFoundException;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class HamburguerServiceImpl implements HamburguerService {
@@ -38,10 +42,14 @@ public class HamburguerServiceImpl implements HamburguerService {
     }
 
     @Override
-    public Page<Hamburguer> findAll() {
-        return null;
+    public List<HamburguerDTO> findAll() {
+        return hamburguerRepository.findAll().stream()
+                .map(HamburguerDTO::new).collect(Collectors.toList());
     }
 
+    private void valid(@Valid Object obj){}
+
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public HamburguerDTO create(HamburguerInsertDTO dto) {
 
@@ -49,6 +57,7 @@ public class HamburguerServiceImpl implements HamburguerService {
         hamburguerRepository.save(entity);
 
         for(HamburguerIngredientInsertDTO ingredientDTO : dto.getIngredients()){
+            this.valid(ingredientDTO);
             Ingredient ingredient = ingredientService.findById(ingredientDTO.getId());
             HamburguerIngredient hamburguerIngredient = new HamburguerIngredient(entity,ingredient , ingredientDTO.getQuantity(), ingredient.getPrice());
             entity.getHamburguerIngredients().add(hamburguerIngredient);
