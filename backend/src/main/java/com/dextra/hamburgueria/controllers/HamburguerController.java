@@ -1,11 +1,8 @@
 package com.dextra.hamburgueria.controllers;
 
-import com.dextra.hamburgueria.dto.request.HamburguerInsertDTO;
+import com.dextra.hamburgueria.dto.request.NewHamburguerDTO;
 import com.dextra.hamburgueria.dto.response.HamburguerDTO;
-import com.dextra.hamburgueria.entities.Hamburguer;
-import com.dextra.hamburgueria.entities.Ingredient;
 import com.dextra.hamburgueria.services.HamburguerService;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -39,7 +36,7 @@ public class HamburguerController {
 
 
     @PostMapping
-    public ResponseEntity<HamburguerDTO> create(@Valid @RequestBody HamburguerInsertDTO dto){
+    public ResponseEntity<HamburguerDTO> create(@Valid @RequestBody NewHamburguerDTO dto){
         HamburguerDTO hamburguerDTO = hamburguerService.create(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(hamburguerDTO.getId()).toUri();
         return ResponseEntity.created(uri).body(hamburguerDTO);

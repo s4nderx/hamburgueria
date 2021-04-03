@@ -1,7 +1,7 @@
 package com.dextra.hamburgueria.services;
 
 import com.dextra.hamburgueria.dto.request.HamburguerIngredientInsertDTO;
-import com.dextra.hamburgueria.dto.request.HamburguerInsertDTO;
+import com.dextra.hamburgueria.dto.request.NewHamburguerDTO;
 import com.dextra.hamburgueria.dto.response.HamburguerDTO;
 import com.dextra.hamburgueria.entities.Hamburguer;
 import com.dextra.hamburgueria.entities.HamburguerIngredient;
@@ -12,7 +12,6 @@ import com.dextra.hamburgueria.services.exception.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,8 +36,8 @@ public class HamburguerServiceImpl implements HamburguerService {
 
     @Override
     public Hamburguer findById(Long id) {
-        Hamburguer hamburguer = hamburguerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Hamburguer not found, id: " + id));
-        return hamburguer;
+        return hamburguerRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Hamburguer not found, id: " + id));
     }
 
     @Override
@@ -47,17 +46,14 @@ public class HamburguerServiceImpl implements HamburguerService {
                 .map(HamburguerDTO::new).collect(Collectors.toList());
     }
 
-    private void valid(@Valid Object obj){}
-
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public HamburguerDTO create(HamburguerInsertDTO dto) {
+    public HamburguerDTO create(NewHamburguerDTO dto) {
 
         Hamburguer entity = new Hamburguer(dto.getName());
         hamburguerRepository.save(entity);
 
         for(HamburguerIngredientInsertDTO ingredientDTO : dto.getIngredients()){
-            this.valid(ingredientDTO);
             Ingredient ingredient = ingredientService.findById(ingredientDTO.getId());
             HamburguerIngredient hamburguerIngredient = new HamburguerIngredient(entity,ingredient , ingredientDTO.getQuantity(), ingredient.getPrice());
             entity.getHamburguerIngredients().add(hamburguerIngredient);
@@ -72,8 +68,4 @@ public class HamburguerServiceImpl implements HamburguerService {
 
     }
 
-    private Hamburguer copyDtoToEntity(HamburguerDTO dto, Hamburguer entity){
-        entity.setName(dto.getName());
-        return entity;
-    }
 }

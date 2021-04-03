@@ -4,7 +4,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
-public class HamburguerInsertDTO {
+public class NewHamburguerDTO {
 
     @NotEmpty(message = "campo nome obrigatório.")
     private String name;
@@ -12,11 +12,11 @@ public class HamburguerInsertDTO {
     @NotEmpty(message = "Um hamburguer precisa ter ingredientes.")
     private List<@Valid HamburguerIngredientInsertDTO> ingredients;
 
-    public HamburguerInsertDTO(String name) {
+    public NewHamburguerDTO(String name) {
         this.name = name;
     }
 
-    public HamburguerInsertDTO() {
+    public NewHamburguerDTO() {
     }
 
     public String getName() {
