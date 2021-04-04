@@ -26,7 +26,6 @@ export class HamburguerService extends ServiceBase {
   }
 
   createBurguer(newHamburguer: NewHamburguerModel): Observable<HamburguerModel> {
-    console.log('###### [BURGAO] :>>>', newHamburguer)
     return this.http.post(`${this._UrlService}/hamburguers`, newHamburguer)
     .pipe(
       map(super._extractData),

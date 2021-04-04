@@ -20,36 +20,25 @@
       </thead>
       <tr *ngFor="let hamburguer of hamburguers">
           <td>
-            {{hamburguer.id}}
+            {{hamburguer?.id}}
           </td>
           <td>
-            {{hamburguer.name}}
+            {{hamburguer?.name}}
           </td>
           <td>
-            {{hamburguer.discount | currency: 'BRL'}}
+            {{hamburguer?.discount | currency: 'BRL'}}
           </td>
           <td>
-            {{hamburguer.price | currency: 'BRL'}}
+            {{hamburguer?.price | currency: 'BRL'}}
           </td>
           <td>
-            {{hamburguer.finalPrice | currency: 'BRL'}}
+            {{hamburguer?.finalPrice | currency: 'BRL'}}
           </td>
           <td>
               <ul>
-                <li *ngFor="let ingredient of hamburguer.ingredients">{{ingredient.quantity}}x {{ingredient.name}}</li>
+                <li *ngFor="let ingredient of hamburguer?.ingredients">{{ingredient?.quantity}}x {{ingredient?.name}}</li>
               </ul>
           </td>
-          <!-- <td class="text-right">
-              <a class="btn btn-info" [routerLink]="['/fornecedores/detalhes']">
-                  <span class="fa fa-search"></span>
-              </a>&nbsp;
-              <a class="btn btn-warning" [routerLink]="['/fornecedores/editar']">
-                  <span class="fa fa-pencil-alt"></span>
-              </a>&nbsp;
-              <a class="btn btn-danger" [routerLink]="['/fornecedores/excluir']">
-                  <span class="fa fa-trash"></span>
-              </a>
-          </td> -->
       </tr>
   </table>
-</div>
+  </div>
