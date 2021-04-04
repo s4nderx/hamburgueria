@@ -6,6 +6,8 @@ Este projeto foi feito para um desafio para a DEXTRA.
 
 [backend] - abra em alguma IDE java, baixe as dependências com maven e rode o projeto. (Java 11 necessário, por padrao roda na porta 8080) <br>
 [frontend] - usa o comando "npm install" para baixar as dependências e em seguida ng serve para rodar a apliação Angular (por padrao roda na porta 4200).
+<br>
+O projeto está configurado para rodar em um banco H2 em memória, toda vez que a aplicação é iniciada o banco é apagado e alimentado pelo script que foi criado.
 
 # Realatório de decisões
 
