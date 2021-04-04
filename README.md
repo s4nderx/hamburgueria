@@ -8,7 +8,9 @@ Este projeto foi feito para um desafio para a DEXTRA.
 [frontend] - usa o comando "npm install" para baixar as dependências e em seguida ng serve para rodar a apliação Angular (por padrao roda na porta 4200).
 <br>
 O projeto está configurado para rodar em um banco H2 em memória, toda vez que a aplicação é iniciada o banco é apagado e alimentado pelo script que foi criado.
-
+<br><br>
+Link requisições postman: https://www.getpostman.com/collections/69e6eb339479d4fafaa0 
+<br>
 # Realatório de decisões
 
 A começar pelo modelo de entidades, decidi criar as classes Hamburguer e Ingredient para serem persistidas. Elas têm relação N, N e o gerenciamento será feito pela classe HamburguerIngredient que também será persistida e terá como chave primária um par de ID’s (Hambúrguer e Ingrediente) e também carregará a quantidade de determinado ingrediente no hambúrguer relacionado e o preço da unitário do ingredient.
