@@ -10,16 +10,15 @@ import { HamburguerService } from '../services/hamburguer.service';
 export class ListComponent implements OnInit {
 
   hamburguers: HamburguerModel[] = [];
-
   constructor(private service: HamburguerService) { }
 
   ngOnInit(): void {
     this.findAll();
   }
 
-  findAll(): void {
-    this.service.findAll().subscribe(data => {
-      this.hamburguers = data;
+  findAll(page?: number): void {
+    this.service.findAll(page).subscribe(response => {
+      this.hamburguers = response;
     })
   }
 

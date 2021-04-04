@@ -54,7 +54,6 @@ export class RegisterComponent implements OnInit {
   failureInsert(failure: any) {
 
     this.errors = failure.error?.errors || [];
-    console.log(this.errors );
     this.toastr.error('Ocorreu um erro!', 'Opa :(');
   };
 
