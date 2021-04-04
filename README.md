@@ -4,8 +4,8 @@ Este projeto foi feito para um desafio para a DEXTRA.
 
 # Como rodar
 
-backend - abra em alguma IDE java, baixe as dependências com maven e rode o projeeto. (Java 11 necessário, por padrao roda na porta 8080) <br>
-frontend - usa o comando "npm install" para baixar as dependências e em seguida ng serve para rodar a apliação Angular (por padrao roda na porta 4200).
+[backend] - abra em alguma IDE java, baixe as dependências com maven e rode o projeto. (Java 11 necessário, por padrao roda na porta 8080) <br>
+[frontend] - usa o comando "npm install" para baixar as dependências e em seguida ng serve para rodar a apliação Angular (por padrao roda na porta 4200).
 
 # Realatório de decisões
 
